@@ -5,10 +5,11 @@ Handle multiple git repositories at once.
 
 ## Install
 
+YOLO
 ```sh
-git clone --depth 1 git@github.com:thiago-negri/gg.git "$HOME/.gg"
-echo 'source "$HOME/.gg/gg.zsh"' >> "$HOME/.zshrc"
+curl -fsSL https://raw.githubusercontent.com/thiago-negri/gg/refs/heads/main/install.sh | bash
 ```
+
 
 ## Usage
 
