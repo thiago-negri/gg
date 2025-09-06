@@ -1,6 +1,8 @@
 # gg
 
-Handle multiple git repositories at once.
+One command for all your git repos.
+
+[![YouTube Video](youtube_video_screenshot.png)](https://www.youtube.com/watch?v=l_nR-X2K5Kk)
 
 
 ## Install
@@ -154,9 +156,6 @@ $ gg status -s
 11 /home/hunz/projects/utils: git status -s
 12 /home/hunz/projects/vim-dark: git status -s
 ```
-
-All output is colorized, I will not add images here though, check imgur if you want:
-- [gg output colorized](https://imgur.com/a/gg-output-wPJdof4)
 
 
 ## Customization
