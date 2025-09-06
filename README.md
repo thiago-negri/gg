@@ -206,8 +206,8 @@ Remember you need to reload your `.zshrc` to see your changes in effect (e.g. `e
 
 ## Cache
 
-The list of repositories is built and cached when you first call `gg`.  Only calling `gg` without any arguments will
-re-evaluate the list of repositories.
+The list of repositories is built and cached when you first call `gg`.
+That cache is only refreshed when you call `gg` without any arguments.
 
 This means two very important things:
 1. New repositories will not show up on the list until you call `gg` again;
