@@ -165,6 +165,10 @@ By default it will only find git repositories in your home folder, up to 3 direc
 If you want to change the list of repositories that `gg` operates on, provide your own version
 of `gg-find` function before sourcing `gg.zsh` in your `.zshrc` file.
 
+That function should return all the repositories listed, one for each line.
+You probably want to sort them in a way so the repository IDs doesn't change every time you
+list your repositories.
+
 The default implementation is at the very top of [gg.zsh](gg.zsh) file, you may use it to
 create your own.
 
