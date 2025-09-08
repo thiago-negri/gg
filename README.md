@@ -15,6 +15,30 @@ curl -fsSL https://raw.githubusercontent.com/thiago-negri/gg/refs/heads/main/ins
 
 ## Usage
 
+GG tries to be smart. The command structure works like that:
+```sh
+gg [filter] [command]
+```
+
+Everything is optional. Examples:
+- `gg` will show the state of all repositories, it will change directory if you only have one repository.
+- `gg 2` will show state of repository with ID `2`, and change directory.
+- `gg 2 status` will run `status` on repository with ID `2`, and not change directory.
+- `gg .model` will show state of all repositories that contain the string `model`, if only one is found, it will change
+  directory.
+- `gg .model status` will run `status` on all repositories that contain the string `model`, and not change directory.
+- `gg status` will run `status` on all repositories, and not change directory.
+
+Summary:
+- If the `command` is missing, GG will show the state of the matching repositories.
+- If the `filter` is missing, GG will apply to all repositories.
+- If the `filter` is a number, GG will apply to the repository with the same ID.
+- If the `filter` starts with a `.`, GG will apply to repositories that directory match the filter (discarding the
+  leading `.`).
+- If only one repository is found and `command` is missing, GG will change directory.
+
+Only `gg` with no arguments will refresh the repository list.
+
 
 ### List all
 List all repositories, with branch and dirty flag.
@@ -45,19 +69,42 @@ $ gg
 ```
 
 
+### Search
+Search repositories.
+```
+gg <FILTER>
+```
+
+Example:
+```
+$ gg .vim
+1 /home/hunz/.config/nvim master [+]
+12 /home/hunz/projects/vim-dark main
+```
+
+
 ### CD to a repo
 Change to a repository directory using its ID.
 ```
-gg <ID>
+gg <ID|FILTER>
 ```
 
 Examples:
 ```
-$ gg 3
-$ pwd
-/home/hunz/.fzf
-
 $ gg 8
+8 /home/hunz/projects/dot-files master [+]
+Changing directory...
+
+$ pwd
+/home/hunz/projects/dot-files
+```
+
+You can also use a string, GG will change directory if only one repository matches the string.
+```
+$ gg .dot
+8 /home/hunz/projects/dot-files master [+]
+Changing directory...
+
 $ pwd
 /home/hunz/projects/dot-files
 ```
@@ -66,7 +113,7 @@ $ pwd
 ### Execute command in one repo
 Execute a command in a repository from anywhere without leaving your current working directory.
 ```
-gg <ID> <COMMAND>
+gg <ID|FILTER> <COMMAND>
 ```
 
 Examples:
@@ -107,6 +154,13 @@ $ gg 1 status -s
 
 $ pwd
 /home/hunz/projects/dot-files
+```
+
+You can also filter projects by a string to apply to multiple projects.
+```
+$ gg .conf fetch
+1 /home/hunz/.config/nvim: git fetch
+2 /home/hunz/.config/wezterm: git fetch
 ```
 
 
