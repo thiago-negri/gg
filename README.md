@@ -217,13 +217,13 @@ $ gg status -s
 By default it will only find git repositories in your home folder, up to 3 directories deep.
 
 If you want to change the list of repositories that `gg` operates on, provide your own version
-of `gg-find` function before sourcing `gg.zsh` in your `.zshrc` file.
+of `gg-find` function before sourcing `gg.bash` in your `.bashrc` file.
 
 That function should return all the repositories listed, one for each line.
 You probably want to sort them in a way so the repository IDs doesn't change every time you
 list your repositories.
 
-The default implementation is at the very top of [gg.zsh](gg.zsh) file, you may use it to
+The default implementation is at the very top of [gg.bash](gg.bash) file, you may use it to
 create your own.
 
 Here's an example of a list of static git repositories:
@@ -246,7 +246,7 @@ gg-find() {
 }
 ```
 
-So your `.zshrc` will look something like this:
+So your `.bashrc` will look something like this:
 ```sh
 gg-find() {
     local folders=(
@@ -256,10 +256,10 @@ gg-find() {
     )
     find "${folders[@]}" -maxdepth 3 -type d -name .git -exec dirname '{}' \; | sort -u
 }
-source "$HOME/.gg/gg.zsh"
+. "$HOME/.gg/gg.bash"
 ```
 
-Remember you need to reload your `.zshrc` to see your changes in effect (e.g. `exec zsh`).
+Remember you need to reload your `.bashrc` to see your changes in effect (e.g. `exec bash`).
 
 
 ## Cache
@@ -274,9 +274,9 @@ This means two very important things:
 If you want to list the repositories without rebuilding the list (i.e. querying from the cache), use `gg ls` command.
 
 The cache is stored in a file `$GG_CACHE_FILE`, which by default is `"$HOME/.gg/.cache"`, you may change that location
-by setting that variable before sourcing `gg.zshrc`, same as you would do to customize `gg-find`.
+by setting that variable before sourcing `gg.bash`, same as you would do to customize `gg-find`.
 
-So your fully customized `.zshrc` may look something like this:
+So your fully customized `.bashrc` may look something like this:
 ```sh
 gg-find() {
     local folders=(
@@ -287,14 +287,14 @@ gg-find() {
     find "${folders[@]}" -maxdepth 3 -type d -name .git -exec dirname '{}' \; | sort -u
 }
 GG_CACHE_FILE="$HOME/.gg_cache_file"
-source "$HOME/.gg/gg.zsh"
+. "$HOME/.gg/gg.bash"
 ```
 
 
 ## Uninstall
 
 ```sh
-sed -i '/^source "$HOME\/.gg\/gg.zsh"/d' "$HOME/.zshrc"
+sed -i '/^[ -f "$HOME/.gg/gg.bash" ] && . "$HOME/.gg/gg.bash"/d' "$HOME/.bashrc"
 rm -rf "$HOME/.gg"
 ```
 
