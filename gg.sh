@@ -83,7 +83,7 @@ gg() {
     elif [[ "$1" =~ ^[0-9]+$ ]]; then
         # 1st arg is a number => exec for a single repository
         gg-exec $@
-    elif [[ "$1" =~ ^\\. ]]; then
+    elif [[ "$1" =~ ^\. ]]; then
         # 1st arg starts with '.' => search
         gg-exec search $@
     else
