@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 GG_DIR="$HOME/.gg"
 GG_SCRIPT_URL="https://raw.githubusercontent.com/thiago-negri/gg/refs/heads/main/gg.sh"
 GG_SCRIPT_PATH="$GG_DIR/gg.sh"
