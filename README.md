@@ -17,11 +17,10 @@ curl -fsSL https://raw.githubusercontent.com/thiago-negri/gg/refs/heads/main/ins
 
 GG tries to be smart. The command structure works like that:
 ```sh
-gg [filter] [command]
+gg [|ls|cache|([.filter|id] [command])]
 ```
 
 Everything is optional. Examples:
-- `gg` will show the state of all repositories, it will change directory if you only have one repository.
 - `gg 2` will show state of repository with ID `2`, and change directory.
 - `gg 2 status` will run `status` on repository with ID `2`, and not change directory.
 - `gg .model` will show state of all repositories that contain the string `model`, if only one is found, it will change
@@ -37,7 +36,11 @@ Summary:
   leading `.`).
 - If only one repository is found and `command` is missing, GG will change directory.
 
-Only `gg` with no arguments will refresh the repository list.
+Special behaviors:
+- `gg ls` will show a summary of the state of all cached repositories.
+- `gg cache` will refresh the cache of all repositories.
+- `gg` with no arguments is the same as `gg cache; gg ls`. It will refresh the cached repository list and show a summary
+  of the state of every repository.
 
 
 ### List all

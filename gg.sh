@@ -77,6 +77,10 @@ gg() {
         # no args => invalidate cache and list
         rm -f "$GG_CACHE_FILE"
         gg-exec all
+    elif [ "$1" = "cache" ]; then
+        # cache => refresh cached repo list
+        rm -f "$GG_CACHE_FILE"
+        gg-find-all
     elif [ "$1" = "ls" ]; then
         # ls => list without invalidating cache
         gg-exec all
