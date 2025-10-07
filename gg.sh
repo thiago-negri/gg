@@ -64,7 +64,7 @@ gg-exec() {
 
         ((index++))
     done <<< "$list"
-    if [ $# -eq 0 ] && [ $match_count -eq 1 ]; then
+    if [ $# -eq 0 -a $match_count -eq 1 ]; then
         # 'gg 2' => cd into repo 2
         echo -e "\e[33mChanging directory...\e[0m"
         cd $last_dir
